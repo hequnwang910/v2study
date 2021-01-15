@@ -1,0 +1,49 @@
+一键安装脚本：
+bash <(curl -s -L https://233v2.com/v2ray.sh)
+
+安装ss:
+ curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py"
+ python get-pip.py
+
+安装ShadowSocks
+ pip install --upgrade pip
+ pip install shadowsocks
+单端口
+vi /etc/shadowsocks.json
+
+{
+    "server": "0.0.0.0",
+    "port_password": {
+        "2018": "ahuwhq",
+        "2019": "ahuwhq1",
+        "8383": "password3",
+        "8384": "password4"
+    },
+    "timeout": 300,
+    "method": "aes-256-cfb"
+}
+
+多端口：
+{
+    "server":"::",
+    "port_password": {
+        "2018": "ahuwhq",
+        "2019": "ahuwhq1",
+        "33303": "ahusci3",
+        "33304":"ahusci4",
+	},
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "timeout":300,
+    "method":" aes-256-cfb ",
+    "fast_open": true
+}
+启动ShadowSocks服务
+ssserver -c /etc/shadowsocks.json -d start
+
+
+安装fs:
+ rm -f install_fs.sh
+ wget –N —no–check–certificate https://raw.githubusercontent.com/91yun/finalspeed/master/install_fs.sh && bash install_fs.sh
+ chmod +x install_fs.sh
+ ./install_fs.sh 2>&1 | tee install.log
